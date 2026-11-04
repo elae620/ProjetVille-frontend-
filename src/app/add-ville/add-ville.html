@@ -1,0 +1,34 @@
+<div class="container">
+  <div>
+    <h2>Ajouter une Ville :</h2>
+  </div>
+  <form>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Ville</label>
+      <input type="text" [(ngModel)]="newVille.idVille" name="idVille" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom Ville</label>
+      <input type="text" [(ngModel)]="newVille.nomVille" name="nomVille" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Superficie Ville</label>
+      <input type="number" [(ngModel)]="newVille.superficie" name="superficie" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date création</label>
+      <input type="date" [(ngModel)]="newVille.dateCreation" name="dateCreation" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Pays</label>
+      <select class="form-control form-control-lg" id="idPays" name="idPays" [(ngModel)]="newIdPays">
+        @for(p of paysList; track p.idPays){ 
+          <option [value]="p.idPays">{{p.nomPays}}</option>
+        }
+      </select>
+    </div>
+    <div class="mt-2">
+      <button type="submit" (click)="addVille()" class="btn btn-success">Ajouter</button>
+    </div>
+  </form>
+</div>

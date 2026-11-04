@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <app-update-pays
+      [pays]="updatedPays"
+      (paysUpdated)="paysUpdated($event)"
+      [ajout]="ajout">
+    </app-update-pays>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom Pays</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of paysList; track p.idPays) {
+            <tr>
+              <td>{{ p.idPays }}</td>
+              <td>{{ p.nomPays }}</td>
+              <td><a class="btn btn-success" (click)="updatePays(p)">Editer</a></td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="3">Aucun pays trouvé !</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

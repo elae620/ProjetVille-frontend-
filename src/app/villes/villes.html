@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+
+      <table class="table table-striped">
+        @if (villes && villes.length > 0) {
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Superficie</th>
+            <th>Date Création</th>
+            <th>Pays</th>
+            @if (authService.isAdmin()) {
+              <th>Actions</th>
+              <th></th>
+            }
+          </tr>
+        </thead>
+        }
+        <tbody>
+          @for (ville of villes; track ville.idVille; let pos=$index; let nbr=$count) {
+
+            <tr>
+              <td>{{pos+1}}</td>
+              <td>{{ ville.idVille }}</td>
+              <td>{{ ville.nomVille }}</td>
+              <td>{{ ville.superficie }}</td>
+              <td>{{ ville.dateCreation | date:'dd/MM/yyyy' }}</td>
+              @if (ville.pays) {
+                <td>{{ ville.pays.nomPays }}</td>
+              } @else {
+                <td>PAS DE PAYS</td>
+              }
+              @if (authService.isAdmin()) {
+                <td><a class="btn btn-danger" (click)="supprimerVille(ville)">Supprimer</a></td>
+                <td><a class="btn btn-success" [routerLink]="['/updateVille',ville.idVille]">Modifier</a></td>
+              }
+
+            </tr>
+          } 
+          @empty {
+            <tr>
+              <td colspan="8">Aucune ville trouvée !</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

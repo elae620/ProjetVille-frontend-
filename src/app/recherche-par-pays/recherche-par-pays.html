@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <label>Pays</label>
+    <select class="form-control form-control-lg" id="idPays" name="idPays"
+      [(ngModel)]="IdPays" (change)="onChange()">
+      <option [ngValue]="undefined" disabled selected>-- Sélectionnez un pays --</option>
+      @for(p of paysList; track p.idPays) {
+        <option [value]="p.idPays">{{ p.nomPays }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Superficie</th>
+            <th>Date Création</th>
+            <th>Pays</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ville of villes; track ville.idVille) {
+            <tr>
+              <td>{{ ville.idVille }}</td>
+              <td>{{ ville.nomVille }}</td>
+              <td>{{ ville.superficie }}</td>
+              <td>{{ ville.dateCreation | date:'dd/MM/yyyy' }}</td>
+              @if (ville.pays) {
+                <td>{{ ville.pays.nomPays }}</td>
+              } @else {
+                <td>PAS DE PAYS</td>
+              }
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="5">Aucune ville trouvée pour ce pays !</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
