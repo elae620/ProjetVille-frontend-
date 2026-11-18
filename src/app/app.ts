@@ -1,5 +1,11 @@
+
 import { Component, OnInit, signal } from '@angular/core';
-import { RouterOutlet, RouterLinkWithHref, RouterLink, Router } from '@angular/router';
+import {
+  RouterOutlet,
+  RouterLinkWithHref,
+  RouterLink,
+  Router
+} from '@angular/router';
 import { AuthService } from './services/auth';
 
 @Component({
@@ -9,19 +15,26 @@ import { AuthService } from './services/auth';
   styleUrl: './app.css'
 })
 export class App implements OnInit {
+
   protected readonly title = signal('ProjetVille');
 
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    let isloggedin: string | null = localStorage.getItem('isloggedIn');
-    let loggedUser: string | null = localStorage.getItem('loggedUser');
-    if (isloggedin !== 'true' || !loggedUser) {
+
+    // Récupérer le JWT sauvegardé dans LocalStorage
+    this.authService.loadToken();
+
+    // Vérifier si l'utilisateur possède un token valide
+    if (!this.authService.getToken() || this.authService.isTokenExpired()) {
       this.router.navigate(['/login']);
-    } else {
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
     }
   }
+
+
 
   onLogout() {
     this.authService.logout();

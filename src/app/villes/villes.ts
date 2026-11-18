@@ -5,6 +5,7 @@ import { VilleService } from '../services/ville';
 import { AuthService } from '../services/auth';
 import { RouterLink } from '@angular/router';
 
+
 @Component({
   selector: 'app-villes',
   imports: [CommonModule, RouterLink],

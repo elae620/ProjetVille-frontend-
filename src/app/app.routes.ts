@@ -8,6 +8,8 @@ import { ListePays } from './liste-pays/liste-pays';
 import { Login } from './login/login';
 import { Forbidden } from './forbidden/forbidden';
 import { villeGuard } from './ville.guard';
+import { RegisterComponent } from './register/register';
+import { VerifEmail } from './verif-email/verif-email';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/villes', pathMatch: 'full' },
@@ -18,5 +20,7 @@ export const routes: Routes = [
   { path: 'rechercheParNom', component: RechercheParNom },
   { path: 'listePays', component: ListePays },
   { path: 'login', component: Login },
+  { path: 'register', component: RegisterComponent },
+  { path: 'verifEmail', component: VerifEmail },
   { path: 'app-forbidden', component: Forbidden }
 ];
